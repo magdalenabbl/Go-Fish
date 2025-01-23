@@ -1,0 +1,11 @@
+// Function to deal cards to players.
+
+void dealCards(vector<string>& deck, vector<string>& hand, int numCards)
+{
+	// Transfer the top cards from the deck to the player's hand.
+	for (int i = 0; i < numCards && !deck.empty(); ++i)
+	{
+		hand.push_back(deck.back());
+		deck.pop_back();
+	}
+}
