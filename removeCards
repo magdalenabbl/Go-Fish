@@ -1,0 +1,23 @@
+
+// Function to remove specific cards from one hand and transfer them to another.
+void removeCards(
+	vector<string>& fromHand,
+	vector<string>& toHand,
+	const string& cardType
+)
+{
+	vector<string> newHand;
+
+	for (int i = 0; i < static_cast<int> (fromHand.size()); ++i)
+	{
+		if (fromHand[i] == cardType)
+		{
+			toHand.push_back(fromHand[i]);
+		}
+		else
+		{
+			newHand.push_back(fromHand[i]);
+		}
+	}
+	fromHand = newHand;
+}
