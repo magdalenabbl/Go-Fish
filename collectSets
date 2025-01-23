@@ -1,0 +1,83 @@
+
+// Function to collect sets of four identical cards.
+
+void collectSets(
+	vector<string>& hand,
+	vector<string>& sets,
+	const string& playerName
+)
+{
+	const string values[] = {
+		"2", "3", "4", "5", "6", "7", "8", "9",
+		"10", "J", "Q", "K", "A"
+	};
+
+	for (int v = 0; v < 13; ++v)
+	{
+		int count = 0;
+		// Count the cards of the same value in the hand.
+		for (int i = 0; i < static_cast<int> (hand.size()); ++i)
+		{
+			if (hand[i] == values[v])
+			{
+				count++;
+			}
+		}
+
+		if (count == 4)
+		{
+			cout << playerName << " has collected all four "
+				<< values[v] << "s!" << endl;
+			// The player must confirm the collection.
+			if (playerName == "Player")
+			{
+				string input;
+
+				while (true)
+				{
+					cout << "Player, type '*' to confirm: ";
+					cin >> input;
+
+					if (input == "*")
+					{
+						sets.push_back(values[v]);
+						vector<string> newHand;
+
+						for (int i = 0; i < static_cast<int> (hand.size()); ++i)
+						{
+							if (hand[i] != values[v])
+							{
+								newHand.push_back(hand[i]);
+							}
+						}
+						hand = newHand;
+
+						cout << "Player has given the "
+							<< values[v] << " cards."
+							<< endl;
+						break;
+					}
+					else
+					{
+						cout << "Player did not confirm correctly."
+							<< endl;
+					}
+				}
+			}
+			else
+			{
+				sets.push_back(values[v]);
+				vector<string> newHand;
+
+				for (int i = 0; i < static_cast<int> (hand.size()); ++i)
+				{
+					if (hand[i] != values[v])
+					{
+						newHand.push_back(hand[i]);
+					}
+				}
+				hand = newHand;
+			}
+		}
+	}
+}
