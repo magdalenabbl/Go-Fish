@@ -1,0 +1,13 @@
+// Function to check if the hand contains a specific card.
+bool hasCard(const vector<string>& hand, const string& cardType)
+{
+	// Iterate through the hand and look for a card of the specified type.
+	for (int i = 0; i < static_cast<int> (hand.size()); ++i)
+	{
+		if (hand[i] == cardType)
+		{
+			return true;
+		}
+	}
+	return false;
+}
