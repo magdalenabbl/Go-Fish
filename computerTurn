@@ -1,0 +1,121 @@
+
+void computerTurn(
+	vector<string>& computerHand,
+	vector<string>& playerHand,
+	vector<string>& deck,
+	vector<string>& computerSets,
+	vector<string>& playerSets
+)
+{
+	if (checkEndOfFirstPhase(playerHand, computerHand, deck))
+	{
+		return;
+	}
+
+	if (computerHand.empty() && deck.empty())
+	{
+		cout << "Computer's hand is empty, and the deck is empty! "
+			<< "Moving to the second phase of the game." << endl;
+		secondPhase(computerSets, playerSets);
+
+		if (computerSets.empty() || playerSets.empty())
+		{
+			cout << "End of the game! ";
+			cout << "\nComputer have collected all the collections! Computer wins!"
+				<< endl;
+			string input;
+
+			while (true)
+			{
+				cout << "Player, type '*' to end the game: ";
+				cin >> input;
+
+				if (input == "*")
+				{
+					return;
+				}
+				else
+				{
+					cout << "Player did not confirm correctly."
+						<< endl;
+				}
+				return;
+			}
+			return;
+		}
+	}
+
+	while (computerHand.empty() && !deck.empty())
+	{
+		cout << "Computer's hand is empty. Drawing a card from the deck..."
+			<< endl;
+		computerHand.push_back(deck.back());
+		deck.pop_back();
+		cout << "Computer drew a " << computerHand.back() << "." << endl;
+	}
+
+	collectSets(computerHand, computerSets, "Computer");
+	cout << "Computer's turn." << endl;
+	collectSets(computerHand, computerSets, "Computer");
+
+	if (!computerHand.empty())
+	{
+		string cardType = computerHand[rand() % computerHand.size()];
+		cout << "Computer asks for: " << cardType << endl;
+
+		if (hasCard(playerHand, cardType))
+		{
+			cout << "Player gives all " << cardType
+				<< " cards to the Computer." << endl;
+			string input;
+
+			while (true)
+			{
+				cout << "Player, type '*' to give your cards to the Computer: ";
+				cin >> input;
+
+				if (input == "*")
+				{
+					collectSets(computerHand, computerSets, "Computer");
+					removeCards(playerHand, computerHand, cardType);
+					cout << "Player has given the "
+						<< cardType << " cards." << endl;
+					break;
+				}
+				else
+				{
+					cout << "Player did not confirm correctly." << endl;
+				}
+			}
+
+			while (computerHand.empty() && !deck.empty())
+			{
+				cout << "Computer's hand is empty. Drawing a card from the deck..."
+					<< endl;
+				computerHand.push_back(deck.back());
+				deck.pop_back();
+				cout << "Computer drew a " << computerHand.back() << "."
+					<< endl;
+			}
+		}
+		else
+		{
+			cout << "Player does not have any " << cardType
+				<< " cards. Computer draws from deck." << endl;
+			if (!deck.empty())
+			{
+				string drawnCard = deck.back();
+				deck.pop_back();
+				cout << "Computer drew a " << drawnCard << "." << endl;
+				computerHand.push_back(drawnCard);
+
+				if (drawnCard == cardType)
+				{
+					cout << "Computer drew the card it asked for! Continuing its turn."
+						<< endl;
+					return;
+				}
+			}
+		}
+	}
+}
