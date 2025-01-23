@@ -10,8 +10,8 @@ int main()
 
 	initializeDeck(deck);
 	shuffleDeck(deck);
-	dealCards(deck, playerHand, 22);
-	dealCards(deck, computerHand, 22);
+	dealCards(deck, playerHand, 6);
+	dealCards(deck, computerHand, 6);
 
 	while (!checkEndOfFirstPhase(playerHand, computerHand, deck))
 	{
