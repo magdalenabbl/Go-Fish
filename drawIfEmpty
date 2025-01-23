@@ -1,0 +1,18 @@
+
+// Function to draw a card if the hand is empty.
+bool drawIfEmpty(
+	vector<string>& hand,
+	vector<string>& deck,
+	const string& playerName
+)
+{
+	if (hand.empty() && !deck.empty())
+	{
+		hand.push_back(deck.back());
+		deck.pop_back();
+		cout << playerName << " draws a card from the deck."
+			<< endl;
+		return true;
+	}
+	return false;
+}
