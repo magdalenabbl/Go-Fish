@@ -1,0 +1,27 @@
+
+// Main function to start the game.
+int main()
+{
+	vector<string> deck;
+	vector<string> playerHand;
+	vector<string> computerHand;
+	vector<string> playerSets;
+	vector<string> computerSets;
+
+	initializeDeck(deck);
+	shuffleDeck(deck);
+	dealCards(deck, playerHand, 22);
+	dealCards(deck, computerHand, 22);
+
+	while (!checkEndOfFirstPhase(playerHand, computerHand, deck))
+	{
+		playerTurn(playerHand, computerHand, deck, playerSets, computerSets);
+
+		if (checkEndOfFirstPhase(playerHand, computerHand, deck))
+		{
+			break;
+		}
+		computerTurn(computerHand, playerHand, deck, computerSets, playerSets);
+	}
+	return 0;
+}
