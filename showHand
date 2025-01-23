@@ -1,0 +1,11 @@
+
+// Function to display the cards in a hand.
+void showHand(const vector<string>& hand)
+{
+	// Print all the cards in the hand to the screen.
+	for (int i = 0; i < static_cast<int> (hand.size()); ++i)
+	{
+		cout << hand[i] << " ";
+	}
+	cout << endl;
+}
