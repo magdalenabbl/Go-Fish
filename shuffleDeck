@@ -1,0 +1,15 @@
+// Function to shuffle the deck.
+
+void shuffleDeck(vector<string>& deck)
+{
+	srand(static_cast<unsigned> (time(0)));
+
+	for (int i = 0; i < static_cast<int> (deck.size()); ++i)
+	{
+		// Swap cards at random positions.
+		int randIndex = rand() % deck.size();
+		string temp = deck[i];
+		deck[i] = deck[randIndex];
+		deck[randIndex] = temp;
+	}
+}
