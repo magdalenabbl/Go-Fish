@@ -37,7 +37,8 @@ Every time the Player gives a card to the Computer; collects 4 cards of one kind
 - **Player asks the computer for A**: A
 - **Computer has an A and gives the  A cards to the Player**
 - **Player asks the computer for 10**: 10
-- **Computer doesn't have an 10 and his turn starts - he asks for 4**: 4
+- **Computer doesn't have a 10 and the Player draws a card from the deck (if it's not empty)**
+- **Computer's turn starts and he asks for 4**: 4
 - **Player has 4 cards and he confirms he is giving them to the Computer**: *
 - ....
 
