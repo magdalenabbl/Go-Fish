@@ -54,7 +54,7 @@ The game alternates between the Player's and Computer's turns:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/card-game.git
+   git clone https://github.com/magdalenabbl/Go-Fish.git
    cd card-game
    ```
    
