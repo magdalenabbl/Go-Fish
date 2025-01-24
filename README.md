@@ -32,13 +32,20 @@ The game alternates between the Player's and Computer's turns:
 
 ## Example Gameplay
 
-### Round 1
-
-- **Player asks the computer for A**: 
+### First phase 
+Every time the Player gives a card to the Computer; collects 4 cards of one kind (collection); confirms end of the game, he types '*'.
+- **Player asks the computer for A**: A
 - **Computer has an A and gives the  A cards to the Player**
-- 
-  *After collecting all of their cards an the deck is empty they go to the second phase of the game.*
-- **Player is first and asks the Computer for J without seeing his own cards**: 
+- **Player asks the computer for 10**: 10
+- **Computer doesn't have an 10 and his turn starts - he asks for 4**: 4
+- **Player has 4 cards and he confirms he is giving them to the Computer**: *
+- ....
+
+  
+  After collecting all of their cards an the deck is empty they go to the second phase of the game.
+
+### Second phase 
+- **Player is first and asks the Computer for J without seeing his own cards**: J
 - **Computer has an A and gives the  J cards to the Player**
 - **When Computer doesn't have a card of the kind the Player asked for, The Computer's turn starts**
 - 
