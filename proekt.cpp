@@ -1,3 +1,17 @@
+
+/**
+* 
+* solution to course project # 8
+* Introduction to programming course
+* Faculty of Mathematics and Informatics of Sofia University
+* Winter semester 2024 / 2025
+*
+* @author Magdalena Dicheva
+* @idnumber 3MI0600518 * @compiler VC
+*
+*/
+
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -205,7 +219,7 @@ bool checkEndOfFirstPhase(
 	// The first phase ends when both hands and the deck are empty.
 	return playerHand.empty() && computerHand.empty() && deck.empty();
 }
-
+// Function for the second phase of the game - collecting sets.
 void secondPhase(
 	vector<string>& playerSets,
 	vector<string>& computerSets
@@ -213,7 +227,7 @@ void secondPhase(
 {
 	cout << "\n=== Second Phase: Asking for collections ===" << endl;
 	bool isPlayerTurn = true;
-
+	// Check for a winner at the start of the phase.
 	if (computerSets.empty())
 	{
 		cout << "Your sets: " << endl;
@@ -226,11 +240,12 @@ void secondPhase(
 			<< endl;
 		return;
 	}
-
+	// Logic for alternating turns between the player and the computer.
 	while (!playerSets.empty() && !computerSets.empty())
 	{
 		if (isPlayerTurn)
 		{
+			// The player asks for a collection.
 			cout << "Enter the type of collection you want to ask for (e.g., 'A', '7'): ";
 			string collectionType;
 			cin >> collectionType;
@@ -618,7 +633,7 @@ void computerTurn(
 		}
 	}
 }
-
+// Main function to start the game.
 int main()
 {
 	vector<string> deck;
