@@ -1,0 +1,11 @@
+
+// Function to check if the first phase of the game is over.
+bool checkEndOfFirstPhase(
+	const vector<string>& playerHand,
+	const vector<string>& computerHand,
+	const vector<string>& deck
+)
+{
+	// The first phase ends when both hands and the deck are empty.
+	return playerHand.empty() && computerHand.empty() && deck.empty();
+}
