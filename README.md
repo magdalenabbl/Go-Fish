@@ -21,25 +21,33 @@ A simple C++ program simulating a card game between a player and the computer us
 
 ## How It Works
 
-The game alternates between the player's and computer's turns:
+The game alternates between the Player's and Computer's turns:
 
 1. Both draw cards from a shuffled deck.
-2. The card ranks are compared to decide the winner of each round.
-3. Points are awarded, and the scores are displayed.
-4. The game ends when the deck is empty, and the final winner is declared.
+2. They start asking each other for a card and if the other has he gives all of the cards of that kind.
+3. The first phase of the game ends when the deck is empty, and the Players have collected all of their cards so that their hands are empty.
+4. The second phase starts and the Player is first asking the Computer for a collection (he can't see his own cards).
+5. When the Computer asks for a collection the Player can see his own cards and if he has that collection, he has to give it to the Computer.
+6. The winner is the one who collect all of the cards if the other - 13 collections of 4 cards.
 
 ## Example Gameplay
 
 ### Round 1
 
-- **Player Draws**: 7 of Hearts
-- **Computer Draws**: 5 of Spades\
-  *Player wins this round.*
-
+- **Player asks the computer for A**: 
+- **Computer has an A and gives the  A cards to the Player**
+- 
+  *After collecting all of their cards an the deck is empty they go to the second phase of the game.*
+- **Player is first and asks the Computer for J without seeing his own cards**: 
+- **Computer has an A and gives the  J cards to the Player**
+- **When Computer doesn't have a card of the kind the Player asked for, The Computer's turn starts**
+- 
+  *The winner is who collect all of the other's collections .*
 ### Final Scores
 
-- **Player**: 25
-- **Computer**: 27\
+- **Player**: 0
+- **Computer**: 13 collections (max)
+- 
   *Computer wins the game!*
 
 ## How to Run
