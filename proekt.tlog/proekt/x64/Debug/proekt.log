@@ -1,0 +1,2 @@
+﻿  proekt.cpp
+C:\Users\NATALYA\Pictures\Screenshots\proekt\proekt\proekt.cpp : fatal  error C1041: cannot open program database 'C:\Users\NATALYA\Pictures\Screenshots\proekt\proekt\x64\Debug\vc143.idb'; if multiple CL.EXE write to the same .PDB file, please use /FS
