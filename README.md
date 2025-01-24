@@ -18,7 +18,7 @@ A simple C++ program simulating a card game between a player and the computer us
 - Randomized deck shuffling ensures varied gameplay.
 - Compares card ranks and tracks scores.
 - Declares the winner at the end of the game.
-
+- Every time the Player has to confirm something he types '*'.
 ## How It Works
 
 The game alternates between the Player's and Computer's turns:
