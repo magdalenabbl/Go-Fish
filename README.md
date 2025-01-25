@@ -62,8 +62,7 @@ Every time the Player gives a card to the Computer; collects 4 cards of one kind
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/magdalenabbl/Go-Fish.git
-   cd card-game
+   https://github.com/magdalenabbl/Go-Fish.git
    ```
    
 ---
