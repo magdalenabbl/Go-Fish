@@ -28,7 +28,7 @@ The game alternates between the Player's and Computer's turns:
 3. The first phase of the game ends when the deck is empty, and the Players have collected all of their cards so that their hands are empty.
 4. The second phase starts and the Player is first asking the Computer for a collection (he can't see his own cards).
 5. When the Computer asks for a collection the Player can see his own cards and if he has that collection, he has to give it to the Computer.
-6. The winner is the one who collect all of the cards if the other - 13 collections of 4 cards.
+6. The winner is the one who collect all of the cards of the other - 13 collections of 4 cards.
 
 ## Example Gameplay
 
@@ -47,7 +47,7 @@ Every time the Player gives a card to the Computer; collects 4 cards of one kind
 
 ### Second phase 
 - **Player is first and asks the Computer for J without seeing his own cards**: J
-- **Computer has an A and gives the  J cards to the Player**
+- **Computer has a J and gives the  J cards to the Player**
 - **When Computer doesn't have a card of the kind the Player asked for, The Computer's turn starts**
 - 
   *The winner is who collect all of the other's collections .*
