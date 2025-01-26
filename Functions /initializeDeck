@@ -6,12 +6,13 @@
 
 using namespace std;
 
+
 // Function to initialize the deck with cards.
 void initializeDeck(vector<string>& deck)
 {
 	const string values[] = {
-		"2", "3", "4", "5", "6", "7", "8", "9",
-		"10", "J", "Q", "K", "A"
+	"2", "3", "4", "5", "6", "7", "8", "9",
+	"10", "J", "Q", "K", "A"
 	};
 	// Add 13 cards (one suit) for each of the four suits.
 	for (int i = 0; i < 4; ++i)
