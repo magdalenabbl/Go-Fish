@@ -1,4 +1,3 @@
-
 // Function to display the cards in a hand.
 void showHand(const vector<string>& hand)
 {
