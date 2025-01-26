@@ -1,4 +1,3 @@
-
 // Function for the second phase of the game - collecting sets.
 void secondPhase(
 	vector<string>& playerSets,
@@ -31,8 +30,8 @@ void secondPhase(
 			cin >> collectionType;
 
 			vector<string> Set = {
-				"2", "3", "4", "5", "6", "7", "8", "9",
-				"10", "J", "Q", "K", "A"
+			"2", "3", "4", "5", "6", "7", "8", "9",
+			"10", "J", "Q", "K", "A"
 			};
 
 			if (!hasCard(Set, collectionType))
@@ -41,27 +40,19 @@ void secondPhase(
 				continue;
 			}
 
-			for (size_t i = 0; i < computerSets.size(); ++i)
-			{
-				if (computerSets[i] == collectionType)
-				{
-					cout << "Computer gives you the collection of "
-						<< collectionType << "s!" << endl;
-					playerSets.push_back(computerSets[i]);
-					computerSets.erase(computerSets.begin() + i);
-					continue;
-				}
-				else
-				{
-					isPlayerTurn = false;
-				}
+			// Проверка дали компютърът има исканата колекция
+			auto it = find(computerSets.begin(), computerSets.end(), collectionType);
+			if (it != computerSets.end()) {
+				cout << "Computer gives you the collection of " << collectionType << "s!" << endl;
+				playerSets.push_back(*it); // Добавяме колекцията към играча
+				computerSets.erase(it);    // Премахваме колекцията от компютъра
+				// Играчът продължава своя ход
+				continue;
 			}
-
-			if (isPlayerTurn == false)
-			{
-				cout << "Computer does not have the collection of "
-					<< collectionType << "s. Your turn ends."
-					<< endl;
+			else {
+				cout << "Computer does not have the collection of " << collectionType << "s. Your turn ends." << endl;
+				// Преход към хода на компютъра
+				isPlayerTurn = false;
 			}
 		}
 		else
@@ -74,15 +65,15 @@ void secondPhase(
 				showHand(playerSets);
 
 				const vector<string> values = {
-					"2", "3", "4", "5", "6", "7", "8", "9",
-					"10", "J", "Q", "K", "A"
+				"2", "3", "4", "5", "6", "7", "8", "9",
+				"10", "J", "Q", "K", "A"
 				};
 
 				string computerRequest = values[rand() % values.size()];
 
 				cout << "Computer asks for the collection of "
 					<< computerRequest << "s." << endl;
-				
+
 
 				bool found = false;
 
