@@ -1,159 +1,127 @@
-
-void playerTurn(
-	vector<string>& playerHand,
-	vector<string>& computerHand,
-	vector<string>& deck,
+// Function for the second phase of the game - collecting sets.
+void secondPhase(
 	vector<string>& playerSets,
 	vector<string>& computerSets
 )
 {
-	while (playerHand.empty() && !deck.empty())
+	cout << "\n=== Second Phase: Asking for collections ===" << endl;
+	bool isPlayerTurn = true;
+	// Check for a winner at the start of the phase.
+	if (computerSets.empty())
 	{
-		cout << "Your hand is empty. Drawing a card from the deck..."
-			<< endl;
-		playerHand.push_back(deck.back());
-		deck.pop_back();
-		cout << "You drew a " << playerHand.back() << "." << endl;
+		cout << "Your sets: " << endl;
+		cout << "\nYou have collected all the collections! You win!" << endl;
+		return;
 	}
-
-	cout << "Your turn. Your hand: ";
-	showHand(playerHand);
-	collectSets(playerHand, playerSets, "Player");
-
-	while (playerHand.empty() && !deck.empty())
+	else if (playerSets.empty())
 	{
-		cout << "Your hand is empty. Drawing a card from the deck..."
+		cout << "\nComputer has collected all the collections! Computer wins!"
 			<< endl;
-		playerHand.push_back(deck.back());
-		deck.pop_back();
-		cout << "You drew a " << playerHand.back() << "." << endl;
+		return;
 	}
-
-	while (true)
+	// Logic for alternating turns between the player and the computer.
+	while (!playerSets.empty() && !computerSets.empty())
 	{
-		if (
-			(playerHand.empty() && deck.empty())
-			|| (computerHand.empty() && deck.empty())
-			)
+		if (isPlayerTurn)
 		{
-			cout << "Your hand is empty, and the deck is empty! "
-				<< "Moving to the second phase of the game."
-				<< endl;
-			cout << "Ask for a collection" << endl;
-			secondPhase(playerSets, computerSets);
+			// The player asks for a collection.
+			cout << "Enter the type of collection you want to ask for (e.g., 'A', '7'): ";
+			string collectionType;
+			cin >> collectionType;
 
-			if (playerSets.empty())
+			vector<string> Set = {
+			"2", "3", "4", "5", "6", "7", "8", "9",
+			"10", "J", "Q", "K", "A"
+			};
+
+			if (!hasCard(Set, collectionType))
 			{
-				cout << "End of the game! ";
-				cout << "\nComputer has collected all the collections! "
-					<< "Computer wins!" << endl;
-				string input;
-
-				while (true)
-				{
-					cout << "Player, type '*' to end the game: ";
-					cin >> input;
-
-					if (input == "*")
-					{
-						return;
-					}
-					else
-					{
-						cout << "Player did not confirm correctly."
-							<< endl;
-					}
-					return;
-				}
-				return;
+				cout << "That's not a card. Try again." << endl;
+				continue;
 			}
 
-			if (computerSets.empty())
-			{
-				cout << "End of the game! ";
-				string input;
-
-				while (true)
-				{
-					cout << "Player, type '*' to end the game: ";
-					cin >> input;
-
-					if (input == "*")
-					{
-						return;
-					}
-					else
-					{
-						cout << "Player did not confirm correctly."
-							<< endl;
-					}
-					return;
-				}
-				return;
+			// Проверка дали компютърът има исканата колекция
+			auto it = find(computerSets.begin(), computerSets.end(), collectionType);
+			if (it != computerSets.end()) {
+				cout << "Computer gives you the collection of " << collectionType << "s!" << endl;
+				playerSets.push_back(*it); // Добавяме колекцията към играча
+				computerSets.erase(it);    // Премахваме колекцията от компютъра
+				// Играчът продължава своя ход
+				continue;
 			}
-		}
-
-		if (playerHand.empty() && !deck.empty())
-		{
-			cout << "Your hand is empty. Drawing a card from the deck..."
-				<< endl;
-			playerHand.push_back(deck.back());
-			deck.pop_back();
-			cout << "You drew a " << playerHand.back() << "." << endl;
-		}
-
-		if (!playerHand.empty())
-		{
-			cout << "Enter the type of card you want to ask for (e.g., '2', 'K'): ";
-		}
-
-		string cardType;
-		cin >> cardType;
-
-		if (!hasCard(playerHand, cardType))
-		{
-			cout << "You cannot ask for a card you do not have. Try again."
-				<< endl;
-			continue;
-		}
-
-		if (hasCard(computerHand, cardType))
-		{
-			cout << "Computer gives you all " << cardType << " cards."
-				<< endl;
-			removeCards(computerHand, playerHand, cardType);
-			collectSets(playerHand, playerSets, "Player");
-
-			while (playerHand.empty() && !deck.empty())
-			{
-				cout << "Your hand is empty. Drawing a card from the deck..."
-					<< endl;
-				playerHand.push_back(deck.back());
-				deck.pop_back();
-				cout << "You drew a " << playerHand.back() << "."
-					<< endl;
+			else {
+				cout << "Computer does not have the collection of " << collectionType << "s. Your turn ends." << endl;
+				// Преход към хода на компютъра
+				isPlayerTurn = false;
 			}
 		}
 		else
 		{
-			cout << "Computer does not have any " << cardType
-				<< " cards. Drawing from deck." << endl;
-			if (!deck.empty())
-			{
-				string drawnCard = deck.back();
-				deck.pop_back();
-				cout << "You drew a " << drawnCard << "." << endl;
-				playerHand.push_back(drawnCard);
+			cout << "\nComputer's turn..." << endl;
 
-				if (drawnCard == cardType)
+			if (!computerSets.empty())
+			{
+				cout << "Your sets: " << endl;
+				showHand(playerSets);
+
+				const vector<string> values = {
+				"2", "3", "4", "5", "6", "7", "8", "9",
+				"10", "J", "Q", "K", "A"
+				};
+
+				string computerRequest = values[rand() % values.size()];
+
+				cout << "Computer asks for the collection of "
+					<< computerRequest << "s." << endl;
+
+
+				bool found = false;
+
+				for (size_t i = 0; i < playerSets.size(); ++i)
 				{
-					cout << "You drew the card you asked for! Continue your turn."
-						<< endl;
-					collectSets(playerHand, playerSets, "Player");
-					continue;
+					if (playerSets[i] == computerRequest)
+					{
+						found = true;
+						string input;
+
+						while (true)
+						{
+							cout << "Player, type '*' to give your collection: ";
+							cin >> input;
+
+							if (input == "*")
+							{
+								computerSets.push_back(playerSets[i]);
+								playerSets.erase(playerSets.begin() + i);
+								cout << "Player has given the "
+									<< computerRequest
+									<< " cards." << endl;
+								break;
+							}
+							else
+							{
+								cout << "Player did not confirm correctly."
+									<< endl;
+							}
+						}
+
+						cout << "You give the collection of "
+							<< computerRequest
+							<< "s to the Computer."
+							<< endl;
+						break;
+					}
+				}
+
+				if (!found)
+				{
+					cout << "You do not have the collection of "
+						<< computerRequest
+						<< "s. Computer's turn ends." << endl;
+					isPlayerTurn = true;
 				}
 			}
-			break;
 		}
 	}
 }
+
