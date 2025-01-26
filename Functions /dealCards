@@ -1,3 +1,4 @@
+
 // Function to deal cards to players.
 
 void dealCards(vector<string>& deck, vector<string>& hand, int numCards)
