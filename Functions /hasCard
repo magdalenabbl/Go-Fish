@@ -1,3 +1,4 @@
+
 // Function to check if the hand contains a specific card.
 bool hasCard(const vector<string>& hand, const string& cardType)
 {
