@@ -58,7 +58,7 @@ void computerTurn(
 	cout << "Computer's turn." << endl;
 	collectSets(computerHand, computerSets, "Computer");
 
-	if (!computerHand.empty())
+	while (!computerHand.empty())
 	{
 		string cardType = computerHand[rand() % computerHand.size()];
 		cout << "Computer asks for: " << cardType << endl;
@@ -113,9 +113,10 @@ void computerTurn(
 				{
 					cout << "Computer drew the card it asked for! Continuing its turn."
 						<< endl;
-					return;
 				}
+				return;
 			}
+
 		}
 	}
 }
